@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.bak
+*.bak-*
+.DS_Store
+demo-fallback/

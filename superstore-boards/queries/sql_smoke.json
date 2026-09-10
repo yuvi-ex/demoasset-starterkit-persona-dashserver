@@ -1,0 +1,153 @@
+{
+  "queries/business/filters.sql": {},
+  "queries/business/fin_kpi.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/fin_trend.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/fin_market.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/fin_bands.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/fin_detail.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/sal_kpi.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/sal_trend.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/sal_region.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/sal_segment.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/sal_detail.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/prj_kpi.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/prj_trend.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/prj_modes.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/prj_priority.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/prj_detail.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/ds_kpi.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/ds_trend.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/ds_features.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/ds_deciles.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/ds_detail.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/pm_kpi.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/pm_trend.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/pm_subcat.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/pm_bands.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  },
+  "queries/business/pm_detail.sql": {
+    "markets": "*",
+    "categories": "*",
+    "segments": "*",
+    "years": "*"
+  }
+}
