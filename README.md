@@ -1,73 +1,72 @@
-# Five roles, one database, one truth
+# Exasol Local Starter Kit — a worked end-to-end demo
 
-A self-contained demo asset. One command turns a fresh clone into **five live
-dashboards** — Finance, Sales, Project, Data Scientist, Product — running on
-your own laptop, over one 51,290-line order book, against a local
-[Exasol](https://github.com/exasol/local-agent-ready-starter) database.
+A real analytics stack on your laptop, start to finish: **install a local Exasol
+database, connect your AI assistant to it over MCP, load a dataset, add the
+dash-server add-on, and finish on five role-specific dashboards** built on top
+of it.
 
-Clone it, run it, present it. Everything ships in the repo: the data, the SQL,
-the boards, and a presenter's talk track.
-
----
-
-## The problem this demo is about
-
-Skip this if you already know it. It is here because the demo is evidence for
-an argument, and the argument is worth stating first.
-
-**1. Every team brings a different number to the same meeting.**
-
-Finance has a margin figure. Sales has a margin figure. They disagree, and both
-are defensible, because each was cut from a different extract, refreshed on a
-different schedule, filtered on a slightly different definition of "last
-quarter". So the meeting stops being about what to do and becomes about whose
-spreadsheet is right. Nobody in the room can settle it, because settling it
-would mean re-deriving both numbers from the same rows — and by the time anyone
-does that, the meeting is over.
-
-The cost is not the reporting effort. It is the decisions that do not get made.
-
-**2. Dashboards answer questions they should refuse.**
-
-Give a BI tool a dimension and it will rank it. Ask "which segment should we
-push?" and you get a league table with a winner at the top — even when the
-spread between first and last is a third of a percentage point, which is
-rounding, not signal. Somebody then acts on that ranking. The tool never said
-"this dimension is not the lever", because tools are not built to say that.
-
-The same silence covers what the data cannot see at all. A margin number sitting
-on a screen looks equally authoritative whether or not there is any cost data
-behind it.
-
-**3. Trying any of this is slow and expensive.**
-
-Wanting to test an idea against real data usually means a cloud account, a
-credit card, a VPN, a data request, and a wait. The gap between "I wonder if"
-and "here is the answer" is measured in days, so most of the time the question
-simply does not get asked.
+Everything ships in this repo — the data, the SQL, the boards, and a presenter's
+talk track. One command runs the whole chain.
 
 ---
 
-## What this demo shows
+## What the Starter Kit is
 
-> **Five roles. One database. One filter bar. Watch them agree.**
+The [Exasol Personal Local Starter Kit](https://github.com/exasol/local-agent-ready-starter)
+puts a full Exasol database on your own machine, with the pieces around it
+already wired up:
 
-Five dashboards, each genuinely different — the CFO wants a P&L, the project
-manager wants an exception list. What they share is **scope**: one filter bar
-across all five tabs. Filter to a market on the Data Scientist tab, switch to
-Finance, and the scope comes with you. The two boards are now describing
-exactly the same rows, and you can say so with certainty rather than hoping two
-extracts were cut the same way.
-
-Three things you can demonstrate, not just assert:
-
-| | |
+| | What it gives you |
 |---|---|
-| **One finding runs through all five boards** | A discount cliff at 20%. Finance meets it as $814.7K of given-away profit; Product as a loss-making catalogue; the data scientist as R² = 0.718 off a single feature. Nobody coordinated that — it is one dataset, so there is one answer in it. |
-| **The boards refuse questions** | Where a dimension is flat, the board says *"this is not the lever"* instead of ranking it. Every tab carries a panel of refusals, and another of things this data cannot see at all. |
-| **It runs on a laptop** | No cloud account, no warehouse bill, no VPN, no data request. Sub-second filters over 51,290 rows. Only the optional Ask panel touches the network. |
+| **A local database** | Exasol Personal (native on macOS) or Exasol Nano (a container on Linux, WSL, Windows). `exakit start`, `exakit status`. No cloud account, no VPN, no data request. |
+| **Your AI, connected** | `exakit mcp-setup` registers the database with Claude, Claude Code, Cursor, Codex and others over MCP — as a dedicated **read-only** user, so plain-English questions become SQL you can read before it runs. |
+| **Data loading** | `exapump` for CSV and Parquet, `exakit data-load` for the guided path, and a JSON Tables add-on that shreds nested documents into relational tables. |
+| **Add-ons** | A marketplace: **dash-server** (agent-built dashboards), VS Code, dbt, a scheduler. |
 
-## See it
+The kit is the product. **This repo is a demo of it** — a complete, honest
+worked example you can run, read and re-present.
+
+## What this demo runs, end to end
+
+| Stage | Kit component | What you see |
+|---|---|---|
+| 1. Database | Exasol Personal / Nano | A real columnar database, running locally |
+| 2. Load | `exapump upload` | 51,290 order lines into a typed table, in seconds |
+| 3. Model | plain SQL | One view is the single seam between the data and everything above it |
+| 4. Verify | `exapump sql` | The load reproduces published totals, or the run stops |
+| 5. Deploy | **dash-server's MCP control plane** | `deploy_dashboard.py` is an MCP client — it validates the profile, lists apps and pushes the dashboard as tool calls |
+| 6. Serve | dash-server | Five persona dashboards on `:5100`, reading as the kit's read-only user |
+| 7. Ask | the kit's MCP server | Your AI assistant queries the same database in plain English, and shows the SQL |
+
+Stages 1–6 are what `setup.sh` automates. Stage 7 is the kit feature you
+demonstrate live from your own AI client — nothing in this repo has to script it.
+
+---
+
+## The problem this speaks to
+
+Worth stating, because the demo is evidence for an argument.
+
+**Trying anything is slow.** Testing an idea against real data usually means a
+cloud account, a credit card, a VPN and a wait — so most questions never get
+asked. A database on your laptop changes what it costs to be curious.
+
+**Every team brings a different number to the same meeting.** Finance has a
+margin figure, Sales has a margin figure, both are defensible, because each was
+cut from a different extract on a different schedule. The meeting becomes about
+whose spreadsheet is right instead of what to do.
+
+**Dashboards answer questions they should refuse.** Give a BI tool a dimension
+and it ranks it — even when the spread between first and last is rounding.
+Somebody then acts on that ranking. And a margin number looks equally
+authoritative whether or not there is any cost data behind it.
+
+The five boards at the end of this demo are built as the answer to the last two:
+one filter bar shared across all five roles so their numbers cannot diverge, and
+boards that say out loud when a dimension is *not* a lever and when the data
+cannot answer at all.
+
+## Run it
 
 ```sh
 git clone https://github.com/yuvi-ex/vitdemoasset.git superstore-demo
@@ -77,20 +76,60 @@ sh setup.sh
 
 Then open **http://127.0.0.1:5100/apps/superstore-boards**
 
-Needs the Exasol Personal Local Starter Kit installed first — see
-[Running it on your laptop](#running-it-on-your-laptop). About 10 minutes for
-that once, then 2 minutes for `setup.sh`.
+`setup.sh` checks prerequisites, creates the table, loads the data, builds the
+view, verifies the totals, dry-runs all 26 queries against live data, deploys
+only if every contract holds, then fires the real callback for all five boards
+and prints **GO / NO-GO**. It is idempotent — rerun it rather than unpicking
+anything.
 
-**Presenting it?** The talk track — beat by beat, what to click, what to say,
-the questions you will get and the answers — is in **[DEMO.md](DEMO.md)**.
+**Presenting it?** The talk track — the whole arc, beat by beat, what to type,
+what to click, what to say, and the questions you will get — is in
+**[DEMO.md](DEMO.md)**.
+
+### Prerequisites
+
+The starter kit with the `dash-server` add-on. Nothing else — the data is in the
+repo.
+
+```sh
+# the kit: local Exasol, exapump, and the MCP bridge
+curl -fsSL https://raw.githubusercontent.com/exasol/local-agent-ready-starter/main/install.sh | sh
+
+# connect your AI assistant to the database (stage 7)
+exakit mcp-setup
+
+# the dashboard host add-on (stages 5-6)
+EXAKIT_MARKETPLACE_ADDONS=dash-server exakit marketplace
+```
+
+Budget ~10 minutes for the kit once, then ~2 minutes for `setup.sh`. The **Ask**
+panel inside the dashboards additionally wants an `ANTHROPIC_API_KEY` (env var,
+or `~/.exasol-starter-kit/credentials/anthropic_api_key`); everything else works
+offline.
+
+### Before you present
+
+```sh
+~/.exasol-starter-kit/dash-server-venv/bin/python3 preflight.py superstore-boards
+```
+
+Walks the exact chain the audience will exercise — database up → data present →
+dash-server up → credential valid → app healthy → callbacks return real numbers
+→ filters bite → latency — and every failure line names the command that fixes
+it. It also *repairs* the one thing known to rot on its own: dash-server's own
+copy of the read-only password, which a kit reinstall silently invalidates.
 
 ---
 
-## What each board opens on
+## The payoff: five roles, one database
 
-The findings below are **measured from this data**, not illustrative. They are
-what the boards will show on your machine, and `sql/03_verify.sql` prints the
-totals your load must reproduce.
+Five dashboards, each genuinely different — the CFO wants a P&L, the project
+manager wants an exception list. What they share is **scope**: one filter bar
+across all five tabs. Filter on the Data Scientist tab, switch to Finance, and
+the scope comes with you, so both boards are describing exactly the same rows.
+
+The findings below are **measured from this data**, not illustrative.
+`sql/03_verify.sql` prints the totals your own load must reproduce.
 
 | Board | Owns | Opens on |
 |---|---|---|
@@ -109,11 +148,10 @@ Sales-weighted margin by discount band:
 | Margin | 25.3% | 17.2% | 9.9% | **−5.5%** | −23.7% | −74.1% |
 
 Breakeven falls inside 21–30%. Fitting line margin on discount alone gives
-**R² = 0.718**, slope −1.859, fitted breakeven **16.8%**.
-
-And the number that turns this from a trade-off into a straight loss:
-**`corr(quantity, discount) = −0.02`**. Discounting buys no volume here, so the
-margin it destroys is not being recovered anywhere.
+**R² = 0.718**, slope −1.859, fitted breakeven **16.8%**. And the number that
+turns this from a trade-off into a straight loss:
+**`corr(quantity, discount) = −0.02`** — discounting buys no volume here, so the
+margin it destroys is not recovered anywhere.
 
 ### What was ruled out rather than reported
 
@@ -148,81 +186,29 @@ limits is worse than no dashboard:
   against a customer promise is not measurable here.
 - **No list price, carrier, returns, or inventory.**
 - **No project table.** The Project Manager board is order fulfilment, which is
-  what this data supports. It is not portfolio management and does not pretend
-  to be.
-
----
-
-## Running it on your laptop
-
-### Prerequisites
-
-The [Exasol Personal Local Starter Kit](https://github.com/exasol/local-agent-ready-starter)
-with the `dash-server` add-on. Nothing else — the data ships in this repo.
-
-```sh
-# the kit (installs Exasol locally, plus exapump and the MCP bridge)
-curl -fsSL https://raw.githubusercontent.com/exasol/local-agent-ready-starter/main/install.sh | sh
-
-# the dashboard host
-EXAKIT_MARKETPLACE_ADDONS=dash-server exakit marketplace
-```
-
-macOS runs Exasol Personal natively; Linux, WSL and Windows get Exasol Nano in a
-container. Either is fine. Budget ~10 minutes for the kit install the first
-time, and about 2 minutes for `setup.sh` after that.
-
-`setup.sh` checks for both prerequisites and names the missing one rather than
-failing obscurely. The **Ask panel** additionally wants an `ANTHROPIC_API_KEY`
-(env var, or `~/.exasol-starter-kit/credentials/anthropic_api_key`); everything
-else works without it, and without any network at all.
-
-### What `setup.sh` does
-
-Creates the table, loads the data, builds the view, verifies the totals,
-dry-runs all 26 queries against live data, deploys only if every contract holds,
-then fires the real callback for all five boards and prints **GO / NO-GO**.
-
-It is idempotent. If a step fails, fix the named cause and rerun the whole
-thing — do not unpick anything.
-
-### Before you present
-
-```sh
-~/.exasol-starter-kit/dash-server-venv/bin/python3 preflight.py superstore-boards
-```
-
-Run it ten minutes before you go on. It walks the exact chain the audience will
-exercise — database up → data present → dash-server up → credential valid → app
-healthy → callbacks return real numbers → filters bite → latency — and every
-failure line says what to run. It also *repairs* the one thing known to rot on
-its own: dash-server's own copy of the Exasol password, which a kit reinstall
-silently invalidates.
+  what this data supports. It is not portfolio management.
 
 ---
 
 ## Making it your own
 
-Three levels, cheapest first. The first two need no code at all.
+Three levels, cheapest first. The first two need no code.
 
-1. **Change the scope, not the code.** Filter to one market or one year before
-   you present, so the numbers are closer to your audience's world. Every
-   finding recomputes live.
+1. **Change the scope.** Filter to one market or year before you present, so the
+   numbers are closer to your audience's world. Every finding recomputes live.
 2. **Repoint the view.** `sql/02_view.sql` is the *only* seam — nothing in
    `app.py` or the 26 query files touches the base table. Point it at your own
-   table with matching column names and all five boards follow.
+   table with matching column names and all five boards follow. Load your data
+   with `exapump upload` (CSV/Parquet) or the JSON Tables add-on for documents.
 3. **Change a board.** Each persona in the `PERSONAS` registry in `app.py` is
    five SQL files plus three builders (tiles, insights, figures). Add or swap
    one, then run `dryrun.py` — it checks every contract before anything deploys.
 
-Whoever you are presenting to, the structure holds: five roles who normally
-cannot reconcile their numbers, and one scope that makes them.
-
 ## Layout
 
 ```
-setup.sh                     one command, prerequisites to verified deploy
-DEMO.md                      the talk track for presenting this
+setup.sh                     one command: prerequisites to verified deploy
+DEMO.md                      the talk track for presenting the whole arc
 data/superstore.csv          51,290 order lines, 2011-2014, 7 markets
 sql/01_schema.sql            typed base table STARTER_KIT.SUPERSTORE_SRC
 sql/02_view.sql              the SUPERSTORE view every query reads
@@ -236,7 +222,8 @@ board.py  harness.py         shared chrome: tiles, insights, charts, export
 dryrun.py                    runs all 26 queries + contract checks, no deploy
 ship.sh                      dry run, then deploy only if everything holds
 preflight.py                 fires the real callbacks; GO / NO-GO
-deploy_dashboard.py          pushes the app through the dash-server MCP plane
+deploy_dashboard.py          the MCP client that pushes the app to dash-server
+fix_dash_profile.py          re-syncs dash-server's copy of the read-only secret
 ```
 
 ## Working on it
