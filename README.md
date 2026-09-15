@@ -18,7 +18,7 @@ already wired up:
 
 | | What it gives you |
 |---|---|
-| **A local database** | Exasol Personal (native on macOS) or Exasol Nano (a container on Linux, WSL, Windows). `exakit start`, `exakit status`. No cloud account, no VPN, no data request. |
+| **A local database** | Exasol Personal — a full Exasol database running on your own machine. `exakit start`, `exakit status`. No cloud account, no VPN, no data request. |
 | **Your AI, connected** | `exakit mcp-setup` registers the database with Claude, Claude Code, Cursor, Codex and others over MCP — as a dedicated **read-only** user, so plain-English questions become SQL you can read before it runs. |
 | **Data loading** | `exapump` for CSV and Parquet, `exakit data-load` for the guided path, and a JSON Tables add-on that shreds nested documents into relational tables. |
 | **Add-ons** | A marketplace: **dash-server** (agent-built dashboards), VS Code, dbt, a scheduler. |
@@ -30,7 +30,7 @@ worked example you can run, read and re-present.
 
 | Stage | Kit component | What you see |
 |---|---|---|
-| 1. Database | Exasol Personal / Nano | A real columnar database, running locally |
+| 1. Database | Exasol Personal | A real columnar database, running locally |
 | 2. Load | `exapump upload` | 51,290 order lines into a typed table, in seconds |
 | 3. Model | plain SQL | One view is the single seam between the data and everything above it |
 | 4. Verify | `exapump sql` | The load reproduces published totals, or the run stops |
