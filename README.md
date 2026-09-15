@@ -139,55 +139,6 @@ The findings below are **measured from this data**, not illustrative.
 | **Data Scientist** | is there a model | R² = 0.718 from one feature, and why you must not price from it |
 | **Product Manager** | the catalogue | **28.1% of products lose money**; margin runs inverse to discount |
 
-### The discount cliff is the spine
-
-Sales-weighted margin by discount band:
-
-| Discount | None | 1–10% | 11–20% | 21–30% | 31–40% | 41%+ |
-|---|---|---|---|---|---|---|
-| Margin | 25.3% | 17.2% | 9.9% | **−5.5%** | −23.7% | −74.1% |
-
-Breakeven falls inside 21–30%. Fitting line margin on discount alone gives
-**R² = 0.718**, slope −1.859, fitted breakeven **16.8%**. And the number that
-turns this from a trade-off into a straight loss:
-**`corr(quantity, discount) = −0.02`** — discounting buys no volume here, so the
-margin it destroys is not recovered anywhere.
-
-### What was ruled out rather than reported
-
-A spread too small to survive rounding is reported as "this dimension is not the
-lever", never ranked into a league table:
-
-- **Segment is flat** — Consumer 11.51%, Corporate 11.54%, Home Office 11.99%.
-  A 0.48pp spread. The boards say outright that segment is not a margin lever.
-- **Freight is flat across markets** (10.4–11.3% of sales). Mode mix, not
-  geography, is the lever.
-- **Ship lag is flat across markets** (3.68–4.01 days on a 3.97-day mean).
-- **Discounting did not drift** — margin holds at 11.0–12.0% across 2011–2014.
-  The cliff is a standing policy, not a deterioration.
-
-### The one place the model and the data disagree
-
-On the board, deliberately. The linear fit's residuals are *structured*: at
-exactly 20% discount the observed mean margin is +14.7% while the fit predicts
-−5.9% — a +20.5pp miss, on 4,998 lines. Discounts cluster on round numbers, so
-the rates carrying the most volume are the ones the fit gets most wrong. The
-Data Scientist board reports R² = 0.718 **and** refuses to let it stand alone:
-price from the bands, not the line.
-
-### What this data cannot support
-
-Every board carries this list in a panel, because a dashboard that hides its
-limits is worse than no dashboard:
-
-- **No cost of goods.** Margin is Profit/Sales *as booked*. These boards can say
-  how much margin a discount destroyed; none can say how much was left.
-- **No delivery date.** Cycle time is order-to-*dispatch*. On-time performance
-  against a customer promise is not measurable here.
-- **No list price, carrier, returns, or inventory.**
-- **No project table.** The Project Manager board is order fulfilment, which is
-  what this data supports. It is not portfolio management.
-
 ---
 
 ## Making it your own
