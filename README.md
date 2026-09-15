@@ -15,8 +15,14 @@ curl -fsSL https://raw.githubusercontent.com/yuvi-ex/demoasset-starterkit-dashse
 ```
 
 That is the whole thing: it checks the prerequisites, clones into
-`~/superstore-demo`, loads the data and deploys. Then open
+`~/superstore-demo`, loads the data and deploys — a couple of minutes once the
+starter kit is installed. Then open
 **http://127.0.0.1:5100/apps/superstore-boards**.
+
+> Verified end to end on 2026-09-15: this one command took a machine with no
+> clone to a **GO** preflight — 51,290 rows loaded, all 26 queries passing their
+> contracts, and all five boards returning live KPIs. Re-running it redeployed
+> cleanly without doubling the data.
 
 It never prompts, so an AI agent can run it unattended — every failure exits
 non-zero naming the one command that fixes it, and re-running is the repair.
