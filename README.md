@@ -69,7 +69,7 @@ cannot answer at all.
 ## Run it
 
 ```sh
-git clone https://github.com/yuvi-ex/vitdemoasset.git superstore-demo
+git clone https://github.com/yuvi-ex/demoasset-starterkit-dashserver.git superstore-demo
 cd superstore-demo
 sh setup.sh
 ```
