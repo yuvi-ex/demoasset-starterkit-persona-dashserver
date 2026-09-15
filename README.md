@@ -6,7 +6,23 @@ dash-server add-on, and finish on five role-specific dashboards** built on top
 of it.
 
 Everything ships in this repo — the data, the SQL, the boards, and a presenter's
-talk track. One command runs the whole chain.
+talk track.
+
+## Run it
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/yuvi-ex/demoasset-starterkit-dashserver/main/bootstrap.sh | sh
+```
+
+That is the whole thing: it checks the prerequisites, clones into
+`~/superstore-demo`, loads the data and deploys. Then open
+**http://127.0.0.1:5100/apps/superstore-boards**.
+
+It never prompts, so an AI agent can run it unattended — every failure exits
+non-zero naming the one command that fixes it, and re-running is the repair.
+Add `--install-kit` to have it install the starter kit and dash-server too,
+rather than stopping to tell you how. Details in [Run it, the long
+way](#run-it-the-long-way).
 
 ---
 
@@ -66,29 +82,15 @@ one filter bar shared across all five roles so their numbers cannot diverge, and
 boards that say out loud when a dimension is *not* a lever and when the data
 cannot answer at all.
 
-## Run it
+## Run it, the long way
 
-**One command, nothing to clone first:**
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/yuvi-ex/demoasset-starterkit-dashserver/main/bootstrap.sh | sh
-```
-
-It checks the prerequisites, clones into `~/superstore-demo`, loads the data and
-deploys. It never prompts, so an AI agent can run it unattended; every failure
-exits non-zero naming the one command that fixes it. Re-running is the repair.
-
-Add `--install-kit` to have it install the starter kit and dash-server too if
-they are missing, rather than stopping and telling you how.
-
-<details><summary>Or clone it yourself</summary>
+Prefer to see each step? Clone it and run the same thing by hand:
 
 ```sh
 git clone https://github.com/yuvi-ex/demoasset-starterkit-dashserver.git superstore-demo
 cd superstore-demo
 sh setup.sh
 ```
-</details>
 
 Then open **http://127.0.0.1:5100/apps/superstore-boards**
 
